@@ -1,0 +1,61 @@
+---
+layout: post
+title: 数值的整数次方
+date: 2020-07-23
+description: LeetCode刷题
+img: post-5.jpg
+tags: [Blog, LeetCode]
+author: zyp
+---
+> 难度：中等 执行用时：100% 内存消耗：100%
+
+## 快速幂：
+
+- 幂的二进制展开：n=bm...b2b1;
+- 获取二进制各位的值：循环执行以下操作。
+1. n&1（与操作）：判断二进制最右一位是否为1；
+2. n>>1（移位操作）：右移一位。
+
+{% highlight ruby %}
+double myPow(double x, int n) {
+		if (x == 0)return 0;
+		long b = n;
+		double res = 1.0;
+		if (b < 0) {
+			x = 1 / x;
+			b = -b;
+		}
+		while (b > 0) {
+			if ((b & 1) == 1)res *= x;
+			x *= x;
+			b >>= 1;
+		}
+		return res;
+	}
+{% endhighlight %}
+
+## 二分法：
+
+{% highlight ruby %}
+double myPow(double x, int n) {
+		 if (x == 0)return 0;
+		if (n == 0)return 1;
+		if (n == 1)return x;
+
+		long b = n;
+        double res = 1.0;
+
+		if (b < 0) {
+			x = 1 / x;
+			b = -b;
+		}
+		if (b % 2 == 0) {
+            res = myPow(x, b/2);
+			return res * res;
+		}
+		else {
+            res = myPow(x, (b-1)/2);
+			return res * res * x;
+		}
+	}
+{% endhighlight %}
