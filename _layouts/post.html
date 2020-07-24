@@ -34,7 +34,19 @@ layout: default
         {% include author-box.html %}
         {% include recent-post.html %}
         {% include newsletter.html %}
-        {% include gitalk.html %}
+        <div id="gitalk-container"></div>
+            <script type="test/javascript">
+            var title = location.pathname.substr(0,50);
+            var gitalk = new Gitalk({
+                clientID: b8d6aebb848f1fdbfbef,
+                clientSecret: af25e24b50e1d8a3b4d9fef025bdffcbea1f733a,
+                repo: https://sususuyan.github.io,
+                owner: ZYP,
+                admin: sususuyan,
+                id: title,
+        });
+        gitalk.render('gitalk-container');
+        </script>
       </div>
     </div> <!-- End Wrapper -->
   </article>
