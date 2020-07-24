@@ -30,6 +30,8 @@ mailchimp: # Add your MailChimp form identifier.
 # Disqus
 discus_identifier: mr-brown # Add your discuss identifier
 
+#Intensedebate
+intensedebate_identifier: oCVwx81K30s37FtIi4DB
 # Tracker
 analytics: # Google Analytics
 
