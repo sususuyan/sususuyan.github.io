@@ -1,6 +1,9 @@
 ---
 layout: default
 ---
+<!-- Link Gitalt -->
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk@latest/dist/gitalk.min.js"></script>
 <div class="flex-container">
   {% include header.html %}
   <article class="article-page">
@@ -31,7 +34,7 @@ layout: default
         {% include author-box.html %}
         {% include recent-post.html %}
         {% include newsletter.html %}
-        {% include intensedebate.html %}
+        {% include gitalk.html %}
       </div>
     </div> <!-- End Wrapper -->
   </article>
