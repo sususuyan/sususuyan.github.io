@@ -1,0 +1,35 @@
+---
+layout: post
+title: 从上到下打印二叉树
+date: 2020-08-18
+description: LeetCode刷题
+img: post-9.jpg
+tags: [Blog, LeetCode]
+author: zyp
+---
+> 难度：中等 执行用时：8.84% 内存消耗：72.29%
+
+这道题涉及层序遍历BFS，借助队列的FIFO特性来实现。
+
+{% highlight ruby %}
+class Solution {
+public:
+    vector<int> levelOrder(TreeNode* root) {
+        vector<int> res;
+        if(!root)
+            return res;
+        queue<TreeNode*> q;
+        q.push(root);
+        while(q.size()){
+            TreeNode* node=q.front();
+            q.pop();
+            res.push_back(node->val);
+            if(node->left)
+                q.push(node->left);
+            if(node->right)
+                q.push(node->right);
+        }
+        return res;
+    }
+};
+{% endhighlight %}
