@@ -6,7 +6,6 @@ description: LeetCode刷题
 img: post-9.jpg
 tags: [Blog, LeetCode]
 author: zyp
-music-id: 1409329965
 ---
 > 难度：中等 执行用时：8.84% 内存消耗：72.29%
 
