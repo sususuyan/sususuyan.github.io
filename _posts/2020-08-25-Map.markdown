@@ -1,0 +1,75 @@
+---
+layout: post
+title: 复杂链表的复制
+date: 2020-08-25
+description: LeetCode刷题
+img: lion.jpg
+tags: [Blog, LeetCode]
+author: zyp
+---
+> 难度：中等 执行用时：96.82% 内存消耗：59.28%
+
+这道题的复制应为深拷贝，难点在于如何定位新创建的结点，记录两种方法。
+
+## 哈希图
+
+- 创建哈希图
+- 复制结点值
+- 复制指针
+
+{% highlight ruby %}
+class Solution {
+public:
+    Node* copyRandomList(Node* head) {
+        if (head == NULL) return NULL;
+		hash_map<Node*, Node*> map;
+		Node* cur = head;
+		while(cur != NULL){
+		map.insert(cur, new Node(cur.val));
+		cur = cur -> next;
+	    }
+	    cur = head;
+	    while(cur != NULL){
+	    map.at(cur).next = map.at(cur.next);
+	    map.get(cur).random = map.get(cur.random);
+	    cur = cur -> next;
+	    }
+	    return map.at(head);
+    }
+};
+{% endhighlight %}
+
+## 原地修改
+
+- 在每个结点之间插入新的结点
+- 复制原结点的指针关系
+
+{% highlight ruby %}
+class Solution {
+public:
+    Node* copyRandomList(Node* head) {
+        if (head == NULL) return NULL;
+		Node* root;
+		Node* copy;
+		for (root = head; root != NULL; root = root->next->next) {
+			copy = new Node(root->val);
+			copy->next = root->next;
+			root->next = copy;
+		}
+		Node* result = head->next;
+		for (root = head; root != NULL; root = root->next->next) {
+			if (root->random != NULL) {
+				root->next->random = root->random->next;
+			}
+		}
+        for (root = head; root!=NULL && root->next != NULL; root = root->next) {
+			copy = root->next;
+			root->next = copy->next;
+			if (copy->next != NULL) {
+				copy->next = copy->next->next;
+			}
+		}
+		return result;
+    }
+};
+{% endhighlight %}
